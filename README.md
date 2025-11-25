@@ -1,3 +1,5 @@
+# Doku und Notizen
+
 ## Primitive Datentypen in Java
 
 Java hat 8 primitive Datentypen, die in vier Kategorien unterteilt werden können.
