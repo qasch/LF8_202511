@@ -163,3 +163,153 @@ double d = 99.9;
 byte b = (byte) d;  // explizit, Datenverlust möglich
 ```
 **Wichtig**: Bei explizitem Casting können Werte "abgeschnitten" werden oder sich unerwartet verhalten, wenn sie außerhalb des Wertebereichs des Zieltyps liegen. Deshalb verlangt Java hier, dass wir es explizit hinschreiben - als Bestätigung, dass wir wissen, was wir tun.
+
+## Scanner in Java - Kurzanleitung
+
+Die `Scanner`-Klasse ermöglicht es, Benutzereingaben von der Konsole zu einzulesen.
+
+## Grundlegende Verwendung
+
+### 1. Import und Erstellung
+
+```java
+import java.util.Scanner;
+
+public class BeispielProgramm {
+    public static void main(String[] args) {
+        // Objekt der Klasse Scanner mit Namen input erstellen
+        Scanner input = new Scanner(System.in);
+        
+        // ... hier verwenden wir den Scanner (s.u.)
+        
+        // Scanner am Ende schließen
+        input.close();
+    }
+}
+```
+
+### Strings einlesen
+
+```java
+System.out.print("Gib deinen Namen ein: ");
+String name = scanner.nextLine();  // Liest die ganze Zeile inkl. Leerzeichen
+
+System.out.print("Gib ein Wort ein: ");
+String wort = scanner.next();  // Liest nur bis zum ersten Leerzeichen
+```
+
+### Zahlen einlesen
+
+```java
+System.out.print("Gib eine Ganzzahl ein: ");
+int zahl = scanner.nextInt();
+
+System.out.print("Gib eine Kommazahl ein: ");
+double kommazahl = scanner.nextDouble();
+
+System.out.print("Gib einen Byte-Wert ein: ");
+byte kleinZahl = scanner.nextByte();
+
+System.out.print("Gib eine lange Zahl ein: ");
+long langeZahl = scanner.nextLong();
+```
+
+### Boolesche Werte einlesen
+
+```java
+System.out.print("Ja oder Nein? (true/false): ");
+boolean antwort = scanner.nextBoolean();
+```
+
+## Vollständiges Beispiel
+
+```java
+import java.util.Scanner;
+
+public class BenutzerDaten {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Wie heißt du? ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Wie alt bist du? ");
+        int alter = scanner.nextInt();
+        
+        System.out.print("Wie groß bist du (in Metern)? ");
+        double groesse = scanner.nextDouble();
+        
+        System.out.println("\n--- Deine Angaben ---");
+        System.out.println("Name: " + name);
+        System.out.println("Alter: " + alter + " Jahre");
+        System.out.println("Größe: " + groesse + " m");
+        
+        scanner.close();
+    }
+}
+```
+
+## Häufige Fehler und Lösungen
+
+### Problem: nextLine() nach nextInt() oder nextDouble()
+
+```java
+// FALSCH - überspringt die nextLine()-Eingabe
+int alter = scanner.nextInt();
+String name = scanner.nextLine();  // Wird übersprungen
+
+// RICHTIG - extra nextLine() zum "Aufräumen"
+int alter = scanner.nextInt();
+scanner.nextLine();  // Entfernt den Zeilenumbruch
+String name = scanner.nextLine();  // Funktioniert jetzt
+```
+
+**Grund:** `nextInt()` liest nur die Zahl, nicht den Zeilenumbruch. Dieser bleibt im Puffer und wird von `nextLine()` sofort eingelesen.
+
+### Problem: Falsche Eingabe (InputMismatchException)
+>[!NOTE]
+> Exceptions mit `try catch` besprechen wir noch...
+
+```java
+// Fehlerabsicherung mit try-catch
+try {
+    System.out.print("Gib eine Zahl ein: ");
+    int zahl = scanner.nextInt();
+    System.out.println("Deine Zahl: " + zahl);
+} catch (Exception e) {
+    System.out.println("Fehler: Keine gültige Zahl!");
+}
+```
+
+### Problem: Scanner nicht geschlossen
+
+```java
+// Besser: try-with-resources (automatisches Schließen)
+try (Scanner scanner = new Scanner(System.in)) {
+    String eingabe = scanner.nextLine();
+    System.out.println("Du hast eingegeben: " + eingabe);
+}  // Scanner wird automatisch geschlossen
+```
+
+## Übersicht der Scanner-Methoden
+
+| Methode | Rückgabetyp | Beschreibung |
+|---------|-------------|--------------|
+| `next()` | String | Liest das nächste Wort (bis Leerzeichen) |
+| `nextLine()` | String | Liest die ganze Zeile |
+| `nextInt()` | int | Liest eine Ganzzahl |
+| `nextDouble()` | double | Liest eine Kommazahl |
+| `nextFloat()` | float | Liest eine Float-Zahl |
+| `nextLong()` | long | Liest eine Long-Zahl |
+| `nextByte()` | byte | Liest einen Byte-Wert |
+| `nextShort()` | short | Liest einen Short-Wert |
+| `nextBoolean()` | boolean | Liest true/false |
+| `hasNext()` | boolean | Prüft, ob weitere Eingabe vorhanden |
+| `hasNextInt()` | boolean | Prüft, ob nächste Eingabe ein int ist |
+
+## Tipps
+
+1. **Immer schließen:** Nicht vergessen, `scanner.close()` am Ende aufzurufen.
+2. **Puffer leeren:** Nach `nextInt()`, `nextDouble()` usw. ein zusätzliches `scanner.nextLine()` verwenden, bevor wir wieder eine ganze Zeile einlesen.
+3. **Eingaben validieren:** Wir verwenden `hasNextInt()`, `hasNextDouble()` usw., um zu prüfen, ob die Eingabe dem erwarteten Typ entspricht.
+4. **Nur ein Scanner:** Wir erstellen für `System.in` nur einen Scanner pro Programm, sonst kann es zu Problemen kommen.
