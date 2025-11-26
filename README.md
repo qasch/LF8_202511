@@ -176,15 +176,15 @@ Die `Scanner`-Klasse ermöglicht es, Benutzereingaben von der Konsole zu einzule
 import java.util.Scanner;
 
 public class BeispielProgramm {
-    public static void main(String[] args) {
-        // Objekt der Klasse Scanner mit Namen input erstellen
-        Scanner input = new Scanner(System.in);
-        
-        // ... hier verwenden wir den Scanner (s.u.)
-        
-        // Scanner am Ende schließen
-        input.close();
-    }
+public static void main(String[] args) {
+// Objekt der Klasse Scanner mit Namen input erstellen
+Scanner input = new Scanner(System.in);
+
+// ... hier verwenden wir den Scanner (s.u.)
+
+// Scanner am Ende schließen
+input.close();
+}
 }
 ```
 
@@ -227,25 +227,25 @@ boolean antwort = scanner.nextBoolean();
 import java.util.Scanner;
 
 public class BenutzerDaten {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Wie heißt du? ");
-        String name = scanner.nextLine();
-        
-        System.out.print("Wie alt bist du? ");
-        int alter = scanner.nextInt();
-        
-        System.out.print("Wie groß bist du (in Metern)? ");
-        double groesse = scanner.nextDouble();
-        
-        System.out.println("\n--- Deine Angaben ---");
-        System.out.println("Name: " + name);
-        System.out.println("Alter: " + alter + " Jahre");
-        System.out.println("Größe: " + groesse + " m");
-        
-        scanner.close();
-    }
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Wie heißt du? ");
+String name = scanner.nextLine();
+
+System.out.print("Wie alt bist du? ");
+int alter = scanner.nextInt();
+
+System.out.print("Wie groß bist du (in Metern)? ");
+double groesse = scanner.nextDouble();
+
+System.out.println("\n--- Deine Angaben ---");
+System.out.println("Name: " + name);
+System.out.println("Alter: " + alter + " Jahre");
+System.out.println("Größe: " + groesse + " m");
+
+scanner.close();
+}
 }
 ```
 
@@ -273,11 +273,11 @@ String name = scanner.nextLine();  // Funktioniert jetzt
 ```java
 // Fehlerabsicherung mit try-catch
 try {
-    System.out.print("Gib eine Zahl ein: ");
-    int zahl = scanner.nextInt();
-    System.out.println("Deine Zahl: " + zahl);
+System.out.print("Gib eine Zahl ein: ");
+int zahl = scanner.nextInt();
+System.out.println("Deine Zahl: " + zahl);
 } catch (Exception e) {
-    System.out.println("Fehler: Keine gültige Zahl!");
+System.out.println("Fehler: Keine gültige Zahl!");
 }
 ```
 
@@ -286,8 +286,8 @@ try {
 ```java
 // Besser: try-with-resources (automatisches Schließen)
 try (Scanner scanner = new Scanner(System.in)) {
-    String eingabe = scanner.nextLine();
-    System.out.println("Du hast eingegeben: " + eingabe);
+String eingabe = scanner.nextLine();
+System.out.println("Du hast eingegeben: " + eingabe);
 }  // Scanner wird automatisch geschlossen
 ```
 
@@ -313,3 +313,131 @@ try (Scanner scanner = new Scanner(System.in)) {
 2. **Puffer leeren:** Nach `nextInt()`, `nextDouble()` usw. ein zusätzliches `scanner.nextLine()` verwenden, bevor wir wieder eine ganze Zeile einlesen.
 3. **Eingaben validieren:** Wir verwenden `hasNextInt()`, `hasNextDouble()` usw., um zu prüfen, ob die Eingabe dem erwarteten Typ entspricht.
 4. **Nur ein Scanner:** Wir erstellen für `System.in` nur einen Scanner pro Programm, sonst kann es zu Problemen kommen.
+
+
+## Arrays
+
+### Wichtige Eigenschaften
+
+- Arrays haben eine **feste Größe**, die bei der Erstellung festgelegt wird
+- Arrays sind **nullbasiert** (Index beginnt bei 0)
+- `ArrayIndexOutOfBoundsException` wird geworfen bei Zugriff auf einen ungültigem Index
+- Arrays sind **Objekte** in Java
+- Standard-Werte: `0` für Zahlen, `false` für boolean, `null` für Objekte
+- Arrays können mit `==` auf Referenzgleichheit geprüft werden, nutze `Arrays.equals()` für Inhaltsvergleich
+
+### Array-Deklaration und Initialisierung
+
+```java
+// Deklaration - wir sagen, dass es das Array gibt
+int[] zahlen;
+String[] namen;
+
+// Initialisierung - wir bestimmen die Anzahl der Elemente 
+// und weisem jeden Element einen initialen Wert (je nach 
+// verwendetem Datentyp) zu
+// bei Intgern ist es 0
+// bei Doubles ist es 0.0
+// bei Booleans ist es false
+// bei Strings ist es null
+// ...
+
+// Deklaration mit Größe
+// in Java haben Arrays eine feste Grösse, die im Nachhinein
+// nicht mehr geändert werden kann
+int[] zahlen = new int[5];
+
+// Deklaration mit Werten
+int[] zahlen = {1, 2, 3, 4, 5};
+String[] namen = {"Anna", "Bob", "Carl"};
+
+// Alternative Syntax (weniger gebräuchlich)
+int zahlen[] = new int[5];
+```
+
+## Zugriff auf Array-Elemente
+
+```java
+int[] zahlen = {10, 20, 30, 40, 50};
+
+// Lesen
+int ersteZahl = zahlen[0];  // 10
+int letzteZahl = zahlen[4];  // 50
+
+// Schreiben
+zahlen[2] = 99;  // Array ist jetzt {10, 20, 99, 40, 50}
+
+// Array-Länge
+int laenge = zahlen.length;  // 5
+```
+
+## Mehrdimensionale Arrays
+
+```java
+// 2D-Array (Matrix)
+int[][] matrix = new int[3][4];  // 3 Zeilen, 4 Spalten
+
+// 2D-Array mit Werten
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Zugriff
+int wert = matrix[1][2];  // 6 (Zeile 1, Spalte 2)
+
+// 3D-Array
+int[][][] cube = new int[3][3][3];
+```
+
+## Array durchlaufen
+
+```java
+int[] zahlen = {1, 2, 3, 4, 5};
+
+// For-Schleife
+for (int i = 0; i < zahlen.length; i++) {
+    System.out.println(zahlen[i]);
+}
+
+// Enhanced For-Loop (For-Each)
+for (int zahl : zahlen) {
+    System.out.println(zahl);
+}
+
+// 2D-Array durchlaufen
+int[][] matrix = {{1, 2}, {3, 4}};
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        System.out.println(matrix[i][j]);
+    }
+}
+```
+
+## Wichtige Array-Methoden (java.util.Arrays)
+
+```java
+import java.util.Arrays;
+
+int[] zahlen = {5, 2, 8, 1, 9};
+
+// Sortieren
+Arrays.sort(zahlen);  // {1, 2, 5, 8, 9}
+
+// Array ausgeben
+System.out.println(Arrays.toString(zahlen));
+
+// Array kopieren
+int[] kopie = Arrays.copyOf(zahlen, zahlen.length);
+int[] teilKopie = Arrays.copyOfRange(zahlen, 1, 4);
+
+// Array füllen
+Arrays.fill(zahlen, 0);  // Alle Elemente auf 0 setzen
+
+// Arrays vergleichen
+boolean gleich = Arrays.equals(zahlen, kopie);
+
+// Binäre Suche (Array muss sortiert sein!)
+int index = Arrays.binarySearch(zahlen, 5);
+```
