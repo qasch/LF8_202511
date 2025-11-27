@@ -17,6 +17,10 @@ public class Tier {
     }
 
     // Konstruktor mit zwei Parametern (überschreibt den Standardkonstruktor -> Polymorphie)
+    // this ist ein Schlüsselwort, mit dem wir *die Klasse an sich* referenzieren
+    // d.h. dass mit this.name das Attribut name (ganz oben) gemeint ist, mit name (ohne this)
+    // der Parameter bzw. die lokale Variable name (die es nur hier innerhalb
+    // dieses Konstruktors gibt)
     public Tier(String name, String art) {
         this.anzahlBeine = 4;
         this.name = name;
