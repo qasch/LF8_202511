@@ -1,12 +1,12 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Aufruf Konstruktor mit vier Parametern
         Tier hund = new Tier(3, "Hänsel", "Hund", 3.7, "Land");
         hund.beschreibeDichSelbst();
         hund.friss();
         hund.gibLaut("wuff wuff");
-        System.out.println(hund.istLandtier());
+        /*
+        // Aufruf Konstruktor mit vier Parametern
 
         // Aufruf Konstruktor mit vier Parametern
         Tier vogel = new Tier(2, "Berta Vogel", "Vogel", 10.2, "Luft");
@@ -35,6 +35,10 @@ public class Main {
         katze.beschreibeDichSelbst();
 
         katze.gibLaut("miau miau");
+         */
+
+        Tier jochen = new Schildkroete(4, "Jochen", "Reptilie", 0.2, "Meer");
+        jochen.beschreibeDichSelbst();
 
     }
 }

@@ -1,8 +1,8 @@
 public class Tier {
     // Eigenschaften/Attribute
-    private int anzahlBeine;
-    private String name, art, lebensbereich;
-    private double geschwindigkeit;
+    int anzahlBeine;
+    String name, art, lebensbereich;
+    double geschwindigkeit;
     /* Konstruktor - soll ein neu erzeugtes Objekt in einen sinnvollen
      Ausgangszustand versetzen (mit sinnvollen Initialwerten versehen)
 
@@ -105,7 +105,7 @@ public class Tier {
      * Gib zurück, ob ein Tier an Land lebt
      * @return true, falls es ein Landdtier ist, sonst false
      */
-    boolean istLandtier(){
+    private boolean istLandtier(){
         if (this.lebensbereich.equals("Land")){
             return true;
         } else {
