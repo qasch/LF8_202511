@@ -25,7 +25,16 @@ public class Main {
 
         // Aufruf Konstruktor mit zwei Parametern
         Tier katze = new Tier("Jumbo", "Katze");
+        // katze.anzahlBeine = 4;
         katze.beschreibeDichSelbst();
+        // katze.anzahlBeine = 6;
+        katze.beschreibeDichSelbst();
+        // Jumbo hat nen Unfall
+        // und knabbert sich selbst ein Bein ab
+        katze.setAnzahlBeine(3);
+        katze.beschreibeDichSelbst();
+
         katze.gibLaut("miau miau");
+
     }
 }
