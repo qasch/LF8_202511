@@ -1,10 +1,26 @@
 public class Main {
     public static void main(String[] args) {
 
-        Tier hund = new Tier(3, "Hänsel", "Hund", 3.7, "Land");
+        Hund hund = new Hund(3, "Hänsel", "Hund", 3.7, "Land");
         hund.beschreibeDichSelbst();
         hund.friss();
-        hund.gibLaut("wuff wuff");
+        hund.gibLaut();
+
+        Hund gretl = new Hund(4, "Gretl", "Hund", 1.2, "Land");
+        gretl.beschreibeDichSelbst();
+
+        Hundeschule moeller = new Hundeschule("Möller");
+        moeller.gibListeMitHundenAus();
+        moeller.hundAufnehmen(hund);
+        moeller.gibListeMitHundenAus();
+        moeller.hundAufnehmen(gretl);
+        moeller.gibListeMitHundenAus();
+        moeller.hundEntlassen(hund);
+        moeller.gibListeMitHundenAus();
+
+        hund.beschreibeDichSelbst();
+
+
         /*
         // Aufruf Konstruktor mit vier Parametern
 
@@ -37,8 +53,20 @@ public class Main {
         katze.gibLaut("miau miau");
          */
 
-        Tier jochen = new Schildkroete(4, "Jochen", "Reptilie", 0.2, "Meer");
+        Schildkroete jochen = new Schildkroete(4, "Jochen", "Reptilie", 0.2, "Meer", "Knochematerial", 1.0);
         jochen.beschreibeDichSelbst();
+        jochen.gibLaut();
+
+        jochen.zieheGliedmassenEin();
+        jochen.gibLaut();
+        jochen.streckeGliedmassenAus();
+
+        jochen.panzer.abwerfen();
+
+        // immer true, da Konstante, kann nicht geändert werden
+        //if(jochen.HATPANZERUNG) {
+        //    System.out.println("Jochen ist gepanzert.");
+        //}
 
     }
 }

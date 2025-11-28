@@ -1,4 +1,4 @@
-public class Tier {
+public abstract class Tier {
     // Eigenschaften/Attribute
     int anzahlBeine;
     String name, art, lebensbereich;
@@ -97,9 +97,7 @@ public class Tier {
      *
      * @param laut das Geräusch, dass das Tier macht
      */
-    void gibLaut(String laut){
-        System.out.println(laut);
-    }
+    public abstract void gibLaut();
 
     /**
      * Gib zurück, ob ein Tier an Land lebt
