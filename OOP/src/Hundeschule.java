@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Hundeschule {
     String name;
+    // Aggregation
     ArrayList<Hund> aufgenommeneHunde = new ArrayList<>();
 
     public Hundeschule(String name){
