@@ -2,14 +2,14 @@ class Computer:
     ## Attribute/Eigenschaften
     ## -> machen wir nicht hier oben, sonder im Initializer
     #number_cores = 0   # public
-    #__ram_size = 0     # private
+    #__ram_size = 0     # private  / Name Mangling -> ram_size _Computer__ram_size
     #_color = None      # protected
 
     ## Konstruktor -> Initializer
     ## heißt immer __init__, nicht wie die Klasse (Vergleich Java)
     def __init__(self, number_cores, ram_size, color):
         self.number_cores = number_cores
-        self.ram_size = ram_size
+        self.__ram_size = ram_size
         self.color = color
         self.is_on = False
 
@@ -25,10 +25,19 @@ class Computer:
     def number_cores(self):
         return self._number_cores
 
+    # print(self.number_cores)
+
     # Äquivalient zum Setter in Java
     @number_cores.setter
     def number_cores(self, value):
         self._number_cores = value
+
+    # Deleter - was passiert, wenn versucht wird, das Attribut zu löschen
+    # NOTE:
+    #  del c.number_cores
+    @number_cores.deleter
+    def number_cores(self):
+        print("Attribut number_cores kann nicht gelöscht werden")
 
     @property
     def is_on(self):
@@ -39,14 +48,7 @@ class Computer:
 
     @is_on.setter
     def is_on(self, value):
-        self._is_on = value
-
-    # Deleter - was passiert, wenn versucht wird, das Attribut zu löschen
-    # NOTE:
-    #  del c.number_cores
-    @number_cores.deleter
-    def number_cores(self):
-        print("Attribut number_cores kann nicht gelöscht werden")
+        self._is_on = bool(value)
 
 
     ## Methoden/Funktionalitäten
@@ -70,4 +72,4 @@ class Computer:
     # show_bluescreen()
     # display_status()
     def display_status(self):
-        print(f"Computer hat {self.number_cores}, {self.ram_size} GB RAM und ist momentan {self.is_on}")
+        print(f"Computer hat {self.number_cores}, {self.__ram_size} GB RAM und ist momentan {self.is_on}")
